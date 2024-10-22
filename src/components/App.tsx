@@ -1,6 +1,5 @@
 import React from 'react';
 import { MainScreen } from '../pages/MainScreen.tsx';
-import { MainScreenProps } from '../props/MainScreenProps.ts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { LoginScreen } from '../pages/LodinScreen.tsx';
 import { FavoritesScreen } from '../pages/FavoritesScreen.tsx';
@@ -9,7 +8,12 @@ import { NotFound } from '../components/NotFound.tsx';
 import { AppRoutesProps } from '../props/AppRoutesProps.ts';
 import { Authorization } from './Autorisation.tsx';
 
-export function App({placeCount}: MainScreenProps): React.JSX.Element {
+type AppProps = {
+  placeCount: number;
+  isAuthorized: boolean;
+}
+
+export function App({placeCount, isAuthorized=false}: AppProps): React.JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
@@ -21,7 +25,7 @@ export function App({placeCount}: MainScreenProps): React.JSX.Element {
         <Route
           path={AppRoutesProps.Favorites}
           element={
-            <Authorization>
+            <Authorization isAuthorized={isAuthorized}>
               <FavoritesScreen />
             </Authorization>
           }
