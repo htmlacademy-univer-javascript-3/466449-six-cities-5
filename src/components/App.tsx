@@ -7,30 +7,32 @@ import { OfferScreen } from '../pages/OfferScreen.tsx';
 import { NotFound } from '../components/NotFound.tsx';
 import { AppRoutesProps } from '../props/AppRoutesProps.ts';
 import { Authorization } from './Autorisation.tsx';
+import { PlaceMock } from '../props/PlaceMocks.ts';
+import { ReviewsMock } from '../mocks/reviews.ts';
 
 type AppProps = {
-  placeCount: number;
+  offers: PlaceMock[];
   isAuthorized: boolean;
 }
 
-export function App({placeCount, isAuthorized=false}: AppProps): React.JSX.Element {
+export function App({offers, isAuthorized = false}: AppProps): React.JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoutesProps.MainScreen}
-          element={<MainScreen placeCount={placeCount} />}
+          element={<MainScreen offers={offers} />}
         />
         <Route path={AppRoutesProps.Login} element={<LoginScreen />} />
         <Route
           path={AppRoutesProps.Favorites}
           element={
             <Authorization isAuthorized={isAuthorized}>
-              <FavoritesScreen />
+              <FavoritesScreen offers={offers} />
             </Authorization>
           }
         />
-        <Route path={AppRoutesProps.Offer} element={<OfferScreen />} />
+        <Route path={AppRoutesProps.Offer} element={<OfferScreen initialReviews={ReviewsMock} offer={offers[0]}/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
