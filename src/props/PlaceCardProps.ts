@@ -1,11 +1,18 @@
+import { City } from './PlaceMocks';
+
+export type CardTypes = 'CitiesCard' | 'FavoritesCard';
+
 export type PlaceCardProps = {
-  image: string;
-  price: number;
-  description: string;
-  rating: string;
+  id: string;
   type: PlaceType;
+  price: number;
+  city: City;
+  rating: number;
+  previewImage: string;
+  cardType: CardTypes;
+  isFavorite?: boolean;
   isPremium?: boolean;
-  isInBookmarks?: boolean;
+  onChangeActiveCardId?: (id: string | null) => void;
 }
 
 export enum PlaceType {
