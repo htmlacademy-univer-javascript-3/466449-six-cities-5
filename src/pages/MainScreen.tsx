@@ -1,10 +1,20 @@
 import React from 'react';
-import { MainScreenProps } from '../props/MainScreenProps.ts';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Nullable } from 'vitest';
+import { PlaceMock, _Location } from '../props/PlaceMocks.ts';
 import { PlaceList } from '../components/PlaceList.tsx';
 import { Layout } from '../components/layout.tsx';
-import { Link } from 'react-router-dom';
+import { Map } from '../components/map.tsx';
 
-export function MainScreen({offers}: MainScreenProps): React.JSX.Element {
+export type MainScreenProps = {
+  offers: PlaceMock[];
+  city: _Location
+}
+
+export function MainScreen({offers, city}: MainScreenProps): React.JSX.Element {
+  const [selectedId, setSelectedId] = useState<Nullable<string>>();
+  const points = offers.map((o) => ({ name: o.id, point: o.location }));
   return (
     <div className="page page--gray page--main">
       <Layout>
@@ -71,7 +81,11 @@ export function MainScreen({offers}: MainScreenProps): React.JSX.Element {
                 </div>
               </section>
               <div className="cities__right-section">
-                <section className="cities__map map"></section>
+              <Map
+                city={city}
+                locations={points}
+                selected={points.find((p) => p.name === selectedId)}
+              />
               </div>
             </div>
           </div>
