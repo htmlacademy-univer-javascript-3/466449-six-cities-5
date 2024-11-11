@@ -9,11 +9,16 @@ export const offerMocks: PlaceMock[] = [
     price: 120,
     city: {
       name: 'Amsterdam',
-      location: {
-        latitude: 52.35514938496378,
-        longitude: 4.673877537499948,
+      point: {
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
         zoom: 8,
       },
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
+      zoom: 8,
     },
     isFavorite: false,
     isPremium: true,
@@ -55,11 +60,16 @@ export const offerMocks: PlaceMock[] = [
     price: 80,
     city: {
       name: 'Amsterdam',
-      location: {
-        latitude: 52.35514938496378,
-        longitude: 4.673877537499948,
+      point: {
+        latitude: 52.3609553943508,
+        longitude: 4.85309666406198,
         zoom: 8,
       },
+    },
+    location: {
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
+      zoom: 8,
     },
     isFavorite: true,
     isPremium: false,
@@ -97,11 +107,16 @@ export const offerMocks: PlaceMock[] = [
     price: 132,
     city: {
       name: 'Amsterdam',
-      location: {
-        latitude: 52.35514938496378,
-        longitude: 4.673877537499948,
+      point: {
+        latitude: 52.3909553943508,
+        longitude: 4.929309666406198,
         zoom: 8,
       },
+    },
+    location: {
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
+      zoom: 8,
     },
     isFavorite: false,
     isPremium: false,
@@ -138,12 +153,17 @@ export const offerMocks: PlaceMock[] = [
     type: PlaceType.Apartment,
     price: 180,
     city: {
-      name: 'Cologne',
-      location: {
-        latitude: 52.35514938496378,
-        longitude: 4.673877537499948,
+      name: 'Amsterdam',
+      point: {
+        latitude: 52.3809553943508,
+        longitude: 4.939309666406198,
         zoom: 8,
       },
+    },
+    location: {
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
+      zoom: 8,
     },
     isFavorite: true,
     isPremium: true,

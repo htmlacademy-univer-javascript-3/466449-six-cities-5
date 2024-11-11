@@ -9,6 +9,7 @@ import { AppRoutesProps } from '../props/AppRoutesProps.ts';
 import { Authorization } from './Autorisation.tsx';
 import { PlaceMock } from '../props/PlaceMocks.ts';
 import { ReviewsMock } from '../mocks/reviews.ts';
+import { Cities } from '../mocks/cities.ts';
 
 type AppProps = {
   offers: PlaceMock[];
@@ -21,7 +22,7 @@ export function App({offers, isAuthorized = false}: AppProps): React.JSX.Element
       <Routes>
         <Route
           path={AppRoutesProps.MainScreen}
-          element={<MainScreen offers={offers} />}
+          element={<MainScreen offers={offers} city={Cities.find((c) => c.name === 'Amsterdam') || Cities[0]}/>}
         />
         <Route path={AppRoutesProps.Login} element={<LoginScreen />} />
         <Route

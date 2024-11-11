@@ -1,15 +1,15 @@
 import { PlaceType } from './PlaceCardProps';
 import { User } from './User';
 
-export type _Location = {
+export type Point = {
     latitude: number;
     longitude: number;
     zoom: number;
 };
 
-export type City = {
+export type _Location = {
     name: string;
-    location: _Location;
+    point: Point;
 };
 
 export type PlaceMock = {
@@ -17,7 +17,8 @@ export type PlaceMock = {
     title: string;
     type: PlaceType;
     price: number;
-    city: City;
+    city: _Location;
+    location: Point;
     isFavorite: boolean;
     isPremium: boolean;
     rating: number;
