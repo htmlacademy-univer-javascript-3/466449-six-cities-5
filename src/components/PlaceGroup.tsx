@@ -1,11 +1,11 @@
-import { PlaceMock } from '../props/PlaceMocks';
+import { Offer } from '../props/OffersMocks';
 import { PlaceList } from './PlaceList';
 import { Link } from 'react-router-dom';
-import { CardTypes } from '../props/PlaceCardProps';
+import { CardTypes } from './PlaceCard';
 
 export interface PlaceGroupProps {
   cityName: string;
-  offers: PlaceMock[];
+  offers: Offer[];
   cardType: CardTypes;
 }
 

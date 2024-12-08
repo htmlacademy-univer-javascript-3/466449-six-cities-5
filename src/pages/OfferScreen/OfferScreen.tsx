@@ -1,14 +1,14 @@
 import React from 'react';
-import { Layout } from '../components/layout';
-import { PlaceMock } from '../props/PlaceMocks';
-import type { Review } from '../props/Review';
+import { Layout } from '../../components/layout';
+import { Offer } from '../../props/OffersMocks';
+import type { Review } from '../../props/Review';
 import {useState} from 'react';
-import { ReviewCard } from '../components/ReviewCard';
-import { ReviewForm } from '../components/ReviewForm';
+import { ReviewCard } from '../../components/ReviewCard';
+import { ReviewForm } from '../../components/ReviewForm';
 
 type OfferScreenProps = {
   initialReviews: Review[];
-  offer: PlaceMock;
+  offer: Offer;
 }
 
 export function OfferScreen({ initialReviews, offer }: OfferScreenProps): React.JSX.Element {
