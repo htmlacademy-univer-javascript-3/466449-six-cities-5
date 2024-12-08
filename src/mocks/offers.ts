@@ -1,194 +1,159 @@
-import { PlaceMock } from '../props/PlaceMocks';
-import { PlaceType } from '../props/PlaceCardProps';
+import { Offer } from '../props/OffersMocks';
+import { Cities } from './cities';
+import { Users } from './Users';
 
-export const offerMocks: PlaceMock[] = [
+
+export const offerMocks: Offer[] = [
   {
-    id: '1',
-    title: 'Beautiful &amp; luxurious apartment at great location',
-    type: PlaceType.Apartment,
-    price: 120,
-    city: {
-      name: 'Amsterdam',
-      point: {
-        latitude: 52.3909553943508,
-        longitude: 4.85309666406198,
-        zoom: 8,
-      },
-    },
+    id: '6371a444-03f8-4578-a059-16ff99169d01',
+    title: 'Perfectly located Castro',
+    description: 'This is a place for dreamers to reset, reflect, and create. Designed with a \'slow\' pace in mind, our hope is that you enjoy every part of your stay; from making local coffee by drip in the morning, choosing the perfect record to put on as the sun sets.',
+    type: 'house',
+    price: 415,
+    previewImage: 'apartment-01.jpg',
+    images: [
+      'https://14.design.htmlacademy.pro/static/hotel/16.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/2.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/10.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/7.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/11.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/6.jpg'
+    ],
+    city: Cities[3],
     location: {
       latitude: 52.3909553943508,
       longitude: 4.85309666406198,
-      zoom: 8,
+      zoom: 16
     },
-    isFavorite: false,
-    isPremium: true,
-    rating: 4,
-    previewImage: 'apartment-01.jpg',
-    description: 'alalala',
-    bedrooms: 2,
     goods: [
-      'Wi-Fi',
-      'Washing machine',
-      'Towels',
-      'Heating',
-      'Coffee machine',
-      'Baby seat',
-      'Kitchen',
       'Dishwasher',
-      'Cabel TV',
-      'Fridge',
+      'Kitchen',
+      'Breakfast',
+      'Laptop friendly workspace',
+      'Baby seat',
+      'Towels',
+      'Washing machine',
+      'Coffee machine',
+      'Air conditioning'
     ],
-    images: [
-      'https://14.design.htmlacademy.pro/static/hotel/1.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/2.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/3.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/4.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/5.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/6.jpg',
-    ],
-    maxAdults: 4,
-    host: {
-      name: 'Angelina',
-      avatarUrl: 'img/avatar-angelina.jpg',
-      isPro: true
-    },
+    host: Users[0],
+    isPremium: true,
+    isFavorite: true,
+    rating: 4.9,
+    bedrooms: 2,
+    maxAdults: 6
   },
   {
-    id: '2',
-    title: 'Wood and stone place',
-    type: PlaceType.Room,
-    price: 80,
-    city: {
-      name: 'Amsterdam',
-      point: {
-        latitude: 52.3609553943508,
-        longitude: 4.85309666406198,
-        zoom: 8,
-      },
-    },
+    id: '2fd6a18d-dc04-4de9-8259-e78e12dac996',
+    title: 'Amazing and Extremely Central Flat',
+    description: 'Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.',
+    type: 'room',
+    price: 257,
+    previewImage: 'room.jpg',
+    images: [
+      'https://14.design.htmlacademy.pro/static/hotel/18.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/4.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/7.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/1.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/9.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/12.jpg'
+    ],
+    city: Cities[3],
     location: {
       latitude: 52.3609553943508,
       longitude: 4.85309666406198,
-      zoom: 8,
+      zoom: 16
     },
-    isFavorite: true,
-    isPremium: false,
-    rating: 4,
-    previewImage: 'room.jpg',
-    description: 'tanana',
-    bedrooms: 3,
     goods: [
+      'Dishwasher',
+      'Breakfast',
+      'Air conditioning',
       'Wi-Fi',
-      'Washing machine',
-      'Towels',
-      'Heating',
-      'Coffee machine',
-      'Fridge',
+      'Towels'
     ],
-    images: [
-      'https://14.design.htmlacademy.pro/static/hotel/1.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/2.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/3.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/4.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/5.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/6.jpg',
-    ],
-    maxAdults: 6,
-    host: {
-      name: 'Oliver Conner',
-      avatarUrl: 'img/avatar-angelina.jpg',
-      isPro: true
-    },
+    host: Users[0],
+    isPremium: false,
+    isFavorite: false,
+    rating: 1.7,
+    bedrooms: 1,
+    maxAdults: 3
   },
   {
-    id: '3',
-    title: 'Canal View Prinsengracht',
-    type: PlaceType.Apartment,
-    price: 132,
-    city: {
-      name: 'Amsterdam',
-      point: {
-        latitude: 52.3909553943508,
-        longitude: 4.929309666406198,
-        zoom: 8,
-      },
-    },
+    id: '9e215c74-6801-4fa7-90b2-889fd5444620',
+    title: 'Waterfront with extraordinary view',
+    description: 'A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.',
+    type: 'apartment',
+    price: 453,
+    previewImage: 'apartment-02.jpg',
+    images: [
+      'https://14.design.htmlacademy.pro/static/hotel/19.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/12.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/9.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/8.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/16.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/3.jpg'
+    ],
+    city: Cities[3],
     location: {
       latitude: 52.3909553943508,
       longitude: 4.929309666406198,
-      zoom: 8,
+      zoom: 16
     },
-    isFavorite: false,
-    isPremium: false,
-    rating: 4,
-    previewImage: 'apartment-02.jpg',
-    description: 'papapapa',
-    bedrooms: 1,
     goods: [
+      'Washing machine',
+      'Cable TV',
       'Wi-Fi',
-      'Baby seat',
-      'Kitchen',
-      'Dishwasher',
-      'Cabel TV',
-      'Fridge',
+      'Washer',
+      'Air conditioning',
+      'Laptop friendly workspace'
     ],
-    images: [
-      'https://14.design.htmlacademy.pro/static/hotel/1.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/2.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/3.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/4.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/5.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/6.jpg',
-    ],
-    maxAdults: 2,
-    host: {
-      name: 'Oliver Conner',
-      avatarUrl: 'img/avatar-angelina.jpg',
-      isPro: true
-    },
+    host: Users[0],
+    isPremium: true,
+    isFavorite: false,
+    rating: 3.6,
+    bedrooms: 4,
+    maxAdults: 10
   },
   {
-    id: '4',
-    title: 'Nice, cozy, warm big bed apartment',
-    type: PlaceType.Apartment,
-    price: 180,
-    city: {
-      name: 'Amsterdam',
-      point: {
-        latitude: 52.3809553943508,
-        longitude: 4.939309666406198,
-        zoom: 8,
-      },
-    },
+    id: '9c1a0573-6c9d-4157-971e-52aafe91bbcd',
+    title: 'Penthouse, 4-5 rooms + 5 balconies',
+    description: 'I rent out a very sunny and bright apartment only 7 minutes walking distance to the metro station. The apartment has a spacious living room with a kitchen, one bedroom and a bathroom with mit bath. A terrace can be used in summer.',
+    type: 'room',
+    price: 190,
+    previewImage: 'apartment-03.jpg',
+    images: [
+      'https://14.design.htmlacademy.pro/static/hotel/13.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/18.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/17.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/8.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/7.jpg',
+      'https://14.design.htmlacademy.pro/static/hotel/5.jpg'
+    ],
+    city: Cities[3],
     location: {
       latitude: 52.3809553943508,
       longitude: 4.939309666406198,
-      zoom: 8,
+      zoom: 16
     },
-    isFavorite: true,
-    isPremium: true,
-    rating: 5,
-    previewImage: 'apartment-03.jpg',
-    description: 'ala',
-    bedrooms: 1,
     goods: [
+      'Towels',
+      'Coffee machine',
+      'Breakfast',
+      'Air conditioning',
+      'Heating',
+      'Fridge',
       'Wi-Fi',
-      'Washing machine'
+      'Washing machine',
+      'Baby seat',
+      'Kitchen',
+      'Cable TV',
+      'Laptop friendly workspace'
     ],
-    images: [
-      'https://14.design.htmlacademy.pro/static/hotel/1.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/2.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/3.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/4.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/5.jpg',
-      'https://14.design.htmlacademy.pro/static/hotel/6.jpg',
-    ],
-    maxAdults: 1,
-    host: {
-      name: 'Oliver Conner',
-      avatarUrl: 'img/avatar-angelina.jpg',
-      isPro: true
-    },
-  }
+    host: Users[0],
+    isPremium: true,
+    isFavorite: true,
+    rating: 1.9,
+    bedrooms: 1,
+    maxAdults: 2
+  },
 ];
-

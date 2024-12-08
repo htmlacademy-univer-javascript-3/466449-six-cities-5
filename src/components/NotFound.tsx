@@ -1,12 +1,12 @@
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoutesProps } from '../props/AppRoutesProps';
+import { AppRoutes } from '../props/Constants';
 
 export function NotFound(): React.JSX.Element {
   return (
     <Fragment>
       <h1>404 Not Found</h1>
-      <Link to={AppRoutesProps.MainScreen}>Go to main page</Link>
+      <Link to={AppRoutes.MainScreen}>Go to main page</Link>
     </Fragment>
   );
 }

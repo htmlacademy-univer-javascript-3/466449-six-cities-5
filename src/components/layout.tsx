@@ -1,4 +1,4 @@
-import { AppRoutesProps } from '../props/AppRoutesProps';
+import { AppRoutes } from "../props/Constants";
 import { Link } from 'react-router-dom';
 
 interface LayoutProps {
@@ -16,7 +16,7 @@ export function Layout({
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <Link className="header__logo-link" to={AppRoutesProps.MainScreen}>
+              <Link className="header__logo-link" to={AppRoutes.MainScreen}>
                 <img
                   className="header__logo"
                   src="img/logo.svg"
@@ -31,7 +31,7 @@ export function Layout({
                 <li className="header__nav-item user">
                   <Link
                     className="header__nav-link header__nav-link--profile"
-                    to={AppRoutesProps.Favorites}
+                    to={AppRoutes.Favorites}
                   >
                     <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                     <span className="header__user-name user__name">
@@ -53,7 +53,7 @@ export function Layout({
       {children}
       {showFooter && (
         <footer className="footer container">
-          <Link className="footer__logo-link" to={AppRoutesProps.MainScreen}>
+          <Link className="footer__logo-link" to={AppRoutes.MainScreen}>
             <img
               className="footer__logo"
               src="img/logo.svg"

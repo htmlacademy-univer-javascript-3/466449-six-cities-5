@@ -1,9 +1,10 @@
-﻿import { _Location, Point  } from "../props/PlaceMocks";
+﻿import { _Location, Point  } from "../props/OffersMocks";
+import { DEFAULT_MAP_ZOOM } from "../props/Constants";
 
 export const MockLocation: Point = {
   latitude:  52.379863,
   longitude: 4.894327,
-  zoom: 12
+  zoom: DEFAULT_MAP_ZOOM,
 };
 
 export const Cities: _Location[] = [

@@ -1,6 +1,21 @@
 import {Link} from 'react-router-dom';
-import { AppRoutesProps } from '../props/AppRoutesProps.ts';
-import { PlaceCardProps } from '../props/PlaceCardProps.ts';
+import { AppRoutes } from '../props/Constants';
+import { _Location } from '../props/OffersMocks';
+
+export type CardTypes = 'CitiesCard' | 'FavoritesCard';
+
+export type PlaceCardProps = {
+  id: string;
+  type: string;
+  price: number;
+  city: _Location;
+  rating: number;
+  previewImage: string;
+  cardType: CardTypes;
+  isFavorite?: boolean;
+  isPremium?: boolean;
+  onChangeActiveCardId?: (id: string | null) => void;
+}
 
 export default function PlaceCard({
   id,
@@ -14,7 +29,7 @@ export default function PlaceCard({
   isPremium,
   onChangeActiveCardId
 }: PlaceCardProps): JSX.Element {
-  const urlSingleOffer = AppRoutesProps.Offer.replace(':id', id);
+  const urlSingleOffer = AppRoutes.Offer.replace(':id', id);
   return (
     <article
       className={cardType === 'CitiesCard' ? 'cities__card place-card' : 'favorites__card place-card'}

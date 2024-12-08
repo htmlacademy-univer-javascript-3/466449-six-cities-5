@@ -1,10 +1,10 @@
 import React from 'react';
-import { PlaceMock } from '../props/PlaceMocks';
-import { Layout } from '../components/layout';
-import { PlaceGroup } from '../components/PlaceGroup';
+import { Offer } from '../../props/OffersMocks';
+import { Layout } from '../../components/layout';
+import { PlaceGroup } from '../../components/PlaceGroup';
 
 export type FavoritesScreenProps = {
-  offers: PlaceMock[];
+  offers: Offer[];
 }
 
 export function FavoritesScreen({ offers }: FavoritesScreenProps): React.JSX.Element {
