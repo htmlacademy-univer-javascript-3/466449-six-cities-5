@@ -1,29 +1,36 @@
-﻿import leaflet from 'leaflet';
+﻿﻿import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { _Location } from '../props/OffersMocks';
+import { Location } from '../props/Offers';
 import { useEffect, useRef } from 'react';
 import { useMap } from './UseMap';
-import { defaultCustomIcon, currentCustomIcon } from '../props/Constants';
+import { currentCustomIcon, defaultCustomIcon } from '../props/Constants';
 import { Nullable } from 'vitest';
 
 type MapProps = {
-  city: _Location;
-  selected: Nullable<_Location>;
-  locations: _Location[];
+  city: Location;
+  selected?: Nullable<Location>;
+  points: Location[];
+  className?: string;
 };
 
-export function Map({ city, selected, locations }: MapProps) {
+export function Map({ city, selected, points, className }: MapProps) {
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city.point);
+  const map = useMap(mapRef, city.location);
 
   useEffect(() => {
     if (map) {
-      locations.forEach((loc) => {
+      map.setView({ lat: city.location.latitude, lng: city.location.longitude}, city.location.zoom);
+    }
+  }, [map, city]);
+
+  useEffect(() => {
+    if (map) {
+      points.forEach((loc) => {
         leaflet
           .marker(
             {
-              lat: loc.point.latitude,
-              lng: loc.point.longitude,
+              lat: loc.location.latitude,
+              lng: loc.location.longitude,
             },
             {
               icon:
@@ -35,9 +42,9 @@ export function Map({ city, selected, locations }: MapProps) {
           .addTo(map);
       });
     }
-  }, [map, locations, selected]);
+  }, [map, points, selected]);
 
   return (
-    <div style={{ height: '500px' }} ref={mapRef} className="cities__map" />
+    <div style={{ height: '500px' }} ref={mapRef} className={className} />
   );
 }

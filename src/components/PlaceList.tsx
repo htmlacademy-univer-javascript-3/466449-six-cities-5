@@ -1,7 +1,7 @@
 ﻿import PlaceCard from './PlaceCard.tsx';
 import {useState} from 'react';
 import {Nullable} from 'vitest';
-import { Offer } from '../props/OffersMocks.ts';
+import { Offer } from '../props/Offers.ts';
 import { CardTypes } from './PlaceCard.tsx';
 
 type PlaceListProps = {

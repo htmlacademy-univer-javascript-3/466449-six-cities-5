@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 import { AppRoutes } from '../props/Constants';
-import { _Location } from '../props/OffersMocks';
+import { Location } from '../props/Offers';
 
 export type CardTypes = 'CitiesCard' | 'FavoritesCard';
 
@@ -8,7 +8,7 @@ export type PlaceCardProps = {
   id: string;
   type: string;
   price: number;
-  city: _Location;
+  city: Location;
   rating: number;
   previewImage: string;
   cardType: CardTypes;

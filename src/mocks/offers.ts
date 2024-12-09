@@ -1,4 +1,4 @@
-import { Offer } from '../props/OffersMocks';
+import { Offer } from '../props/Offers';
 import { Cities } from './cities';
 import { Users } from './Users';
 

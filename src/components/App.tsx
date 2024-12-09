@@ -7,7 +7,7 @@ import { OfferScreen } from '../pages/OfferScreen/OfferScreen.tsx';
 import { NotFound } from '../components/NotFound.tsx';
 import { AppRoutes } from '../props/Constants.ts';
 import { Authorization } from './Autorisation.tsx';
-import { Offer } from '../props/OffersMocks.ts';
+import { Offer } from '../props/Offers.ts';
 import { ReviewsMock } from '../mocks/reviews.ts';
 import { Provider } from 'react-redux';
 import { store } from '../store/Index.ts';
@@ -42,4 +42,6 @@ export function App({offers, isAuthorized = false}: AppProps): React.JSX.Element
     </Provider>
   );
 }
+
+
 
