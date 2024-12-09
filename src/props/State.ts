@@ -1,7 +1,5 @@
-﻿import { _Location } from "./OffersMocks";
-import { Offer } from "./OffersMocks";
+﻿﻿import { store } from '../store/Index';
 
-export type State = {
-  city: _Location;
-  offers: Offer[];
-};
+export type State = ReturnType<typeof store.getState>;
+
+export type AppDispatch = typeof store.dispatch;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout } from '../../components/layout';
-import { Offer } from '../../props/OffersMocks';
+import { Offer } from '../../props/Offers';
 import type { Review } from '../../props/Review';
 import {useState} from 'react';
 import { ReviewCard } from '../../components/ReviewCard';

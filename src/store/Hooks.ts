@@ -1,6 +1,6 @@
-﻿import { useDispatch, useSelector } from 'react-redux';
-import { State } from '../props/State';
-import { store } from './Index';
+﻿﻿import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, State } from '../props/State';
 
-export const useAppSelector = <T>(callback: (state: State) => T) => useSelector<State, T>(callback);
-export const useAppDispatch = () => useDispatch<typeof store.dispatch>();
+export const useAppSelector = <T>(callback: (state: State) => T) =>
+  useSelector<State, T>(callback);
+export const useAppDispatch = () => useDispatch<AppDispatch>();

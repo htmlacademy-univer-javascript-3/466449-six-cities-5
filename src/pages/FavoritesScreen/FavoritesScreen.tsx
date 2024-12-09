@@ -1,5 +1,5 @@
 import React from 'react';
-import { Offer } from '../../props/OffersMocks';
+import { Offer } from '../../props/Offers';
 import { Layout } from '../../components/layout';
 import { PlaceGroup } from '../../components/PlaceGroup';
 

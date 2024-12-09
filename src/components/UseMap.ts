@@ -1,11 +1,10 @@
-﻿import React, { useEffect, useRef, useState } from 'react';
+﻿﻿import React, { useEffect, useRef, useState } from 'react';
 import leaflet from 'leaflet';
-import { Point } from '../props/OffersMocks';
+import { Point } from '../props/Offers';
 
 export function useMap(mapRef: React.RefObject<null>, city: Point) {
   const [map, setMap] = useState<leaflet.Map>();
   const isRenderedRef = useRef(false);
-
   useEffect(() => {
     if (mapRef.current !== null && !isRenderedRef.current) {
       const instance = leaflet.map(mapRef.current, {

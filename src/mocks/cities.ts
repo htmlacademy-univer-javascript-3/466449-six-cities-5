@@ -1,4 +1,4 @@
-﻿import { _Location, Point  } from "../props/OffersMocks";
+﻿import { Location, Point  } from "../props/Offers";
 import { DEFAULT_MAP_ZOOM } from "../props/Constants";
 
 export const MockLocation: Point = {
@@ -7,7 +7,7 @@ export const MockLocation: Point = {
   zoom: DEFAULT_MAP_ZOOM,
 };
 
-export const Cities: _Location[] = [
+export const Cities: Location[] = [
   {
     name: 'Paris',
     point: MockLocation
