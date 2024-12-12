@@ -1,7 +1,7 @@
-import { PlaceList } from '../../components/PlaceList';
+import { PlaceList } from '../../components/Place/PlaceList';
 import { useState } from 'react';
 import { Nullable } from 'vitest';
-import { Map } from '../../components/Map';
+import { Map } from '../../components/Map/Map';
 import { Offer } from '../../props/Offers';
 import { Location } from '../../props/Offers';
 import { SortingOrderList } from '../../components/SortingOrderList';
@@ -29,7 +29,7 @@ export function OfferList({ offers, city }: OfferListProps) {
         </b>
         {<SortingOrderList />}
         <div className="cities__places-list places__list tabs__content">
-          <PlaceList offers={offers} cardType='CitiesCard' />
+          <PlaceList offers={offers} cardType='cities' />
         </div>
       </section>
       <div className="cities__right-section">

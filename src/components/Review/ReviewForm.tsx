@@ -1,38 +1,17 @@
-import type { Review } from '../props/Review';
-import React from 'react';
+﻿import { useState } from 'react';
 
-type ReviewFormProps = {
-  onSubmit: (review: Review) => void;
-}
+export function ReviewForm() {
+  const [formData, setFormData] = useState({ rating: 0, review: '' });
 
-export function ReviewForm({onSubmit}: ReviewFormProps) {
-  const [comments, setComment] = React.useState<string>('');
-  const [rating, setRating] = React.useState<number>(0);
-  const comment = comments.split('\n');
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-
-    const newReview: Review = {
-      id: '42',
-      date: new Date().toISOString(),
-      user: {
-        'name': 'Oliver Conner',
-        'avatarUrl': 'img/avatar-max.jpg',
-        'isPro': false,
-      },
-      comment,
-      rating,
-    };
-
-    onSubmit(newReview);
-    setComment('');
-    setRating(0);
+  const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const {name, value} = e.currentTarget;
+    setFormData({...formData, [name]: value});
   };
 
   return (
     <form className="reviews__form form" action="#" method="post">
       <label className="reviews__label form__label" htmlFor="review">
-              Your review
+        Your review
       </label>
       <div className="reviews__rating-form form__rating">
         <input
@@ -41,7 +20,7 @@ export function ReviewForm({onSubmit}: ReviewFormProps) {
           defaultValue={5}
           id="5-stars"
           type="radio"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => setRating(Number(event.target.value))}
+          onChange={handleRatingChange}
         />
         <label
           htmlFor="5-stars"
@@ -49,7 +28,7 @@ export function ReviewForm({onSubmit}: ReviewFormProps) {
           title="perfect"
         >
           <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star"/>
+            <use xlinkHref="#icon-star" />
           </svg>
         </label>
         <input
@@ -58,7 +37,7 @@ export function ReviewForm({onSubmit}: ReviewFormProps) {
           defaultValue={4}
           id="4-stars"
           type="radio"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => setRating(Number(event.target.value))}
+          onChange={handleRatingChange}
         />
         <label
           htmlFor="4-stars"
@@ -66,7 +45,7 @@ export function ReviewForm({onSubmit}: ReviewFormProps) {
           title="good"
         >
           <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star"/>
+            <use xlinkHref="#icon-star" />
           </svg>
         </label>
         <input
@@ -75,7 +54,7 @@ export function ReviewForm({onSubmit}: ReviewFormProps) {
           defaultValue={3}
           id="3-stars"
           type="radio"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => setRating(Number(event.target.value))}
+          onChange={handleRatingChange}
         />
         <label
           htmlFor="3-stars"
@@ -83,7 +62,7 @@ export function ReviewForm({onSubmit}: ReviewFormProps) {
           title="not bad"
         >
           <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star"/>
+            <use xlinkHref="#icon-star" />
           </svg>
         </label>
         <input
@@ -92,7 +71,7 @@ export function ReviewForm({onSubmit}: ReviewFormProps) {
           defaultValue={2}
           id="2-stars"
           type="radio"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => setRating(Number(event.target.value))}
+          onChange={handleRatingChange}
         />
         <label
           htmlFor="2-stars"
@@ -100,7 +79,7 @@ export function ReviewForm({onSubmit}: ReviewFormProps) {
           title="badly"
         >
           <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star"/>
+            <use xlinkHref="#icon-star" />
           </svg>
         </label>
         <input
@@ -109,7 +88,7 @@ export function ReviewForm({onSubmit}: ReviewFormProps) {
           defaultValue={1}
           id="1-star"
           type="radio"
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) => setRating(Number(event.target.value))}
+          onChange={handleRatingChange}
         />
         <label
           htmlFor="1-star"
@@ -117,7 +96,7 @@ export function ReviewForm({onSubmit}: ReviewFormProps) {
           title="terribly"
         >
           <svg className="form__star-image" width={37} height={33}>
-            <use xlinkHref="#icon-star"/>
+            <use xlinkHref="#icon-star" />
           </svg>
         </label>
       </div>
@@ -126,20 +105,19 @@ export function ReviewForm({onSubmit}: ReviewFormProps) {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        defaultValue={''}
-        onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => setComment(event.target.value)}
+        value={formData.review}
+        onChange={handleRatingChange}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
-                To submit review please make sure to set{' '}
+          To submit review please make sure to set{' '}
           <span className="reviews__star">rating</span> and describe your stay
-                with at least <b className="reviews__text-amount">50 characters</b>.
+          with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={false}
-          onClick={(event) => handleSubmit(event)}
+          disabled
         >
           Submit
         </button>

@@ -1,9 +1,9 @@
 ﻿﻿import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { Location } from '../props/Offers';
+import { Location } from '../../props/Offers';
 import { useEffect, useRef } from 'react';
 import { useMap } from './UseMap';
-import { currentCustomIcon, defaultCustomIcon } from '../props/Constants';
+import { currentCustomIcon, defaultCustomIcon } from '../../props/Constants';
 import { Nullable } from 'vitest';
 
 type MapProps = {

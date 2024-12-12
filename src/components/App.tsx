@@ -5,19 +5,21 @@ import { LoginScreen } from '../pages/LoginScreen/LoginScreen.tsx';
 import { FavoritesScreen } from '../pages/FavoritesScreen/FavoritesScreen.tsx';
 import { OfferScreen } from '../pages/OfferScreen/OfferScreen.tsx';
 import { NotFound } from '../components/NotFound.tsx';
-import { AppRoutes } from '../props/Constants.ts';
+import { AppRoutes, AuthorizationStatus } from '../props/Constants.ts';
 import { Authorization } from './Autorisation.tsx';
 import { Offer } from '../props/Offers.ts';
 import { ReviewsMock } from '../mocks/reviews.ts';
 import { Provider } from 'react-redux';
 import { store } from '../store/Index.ts';
+import { Review } from '../props/Review.ts';
 
 type AppProps = {
   offers: Offer[];
+  reviews: Review[];
   isAuthorized: boolean;
 }
 
-export function App({offers, isAuthorized = false}: AppProps): React.JSX.Element {
+export function App({offers, reviews, isAuthorized = false}: AppProps): React.JSX.Element {
   return (
     <Provider store={store}>
       <BrowserRouter>
@@ -35,7 +37,7 @@ export function App({offers, isAuthorized = false}: AppProps): React.JSX.Element
               </Authorization>
             }
           />
-          <Route path={AppRoutes.Offer} element={<OfferScreen initialReviews={ReviewsMock} offer={offers[0]}/>} />
+          <Route path={AppRoutes.Offer} element={<OfferScreen reviews={ReviewsMock} offer={offers[0]} nearbyOffers={offers} authStatus={AuthorizationStatus.Auth}/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
