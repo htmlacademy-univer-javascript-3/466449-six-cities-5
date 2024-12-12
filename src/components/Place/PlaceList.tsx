@@ -1,7 +1,7 @@
-﻿import PlaceCard from './PlaceCard.tsx';
-import {useState} from 'react';
-import {Nullable} from 'vitest';
-import { Offer } from '../props/Offers.ts';
+﻿import { PlaceCard } from './PlaceCard.tsx';
+import { useState } from 'react';
+import { Nullable } from 'vitest';
+import { Offer } from '../../props/Offers.ts';
 import { CardTypes } from './PlaceCard.tsx';
 
 type PlaceListProps = {
@@ -16,8 +16,7 @@ export function PlaceList({offers, cardType}: PlaceListProps): JSX.Element {
     <>
       {offers.map((offer) => (
         <PlaceCard
-          {...offer}
-          key={offer.id}
+          offer={offer}
           cardType={cardType}
           onChangeActiveCardId={(id) => setActiveCard(id)}
         />

@@ -1,4 +1,4 @@
-import { Offer } from '../props/Offers';
+import { Offer } from '../../props/Offers';
 import { PlaceList } from './PlaceList';
 import { Link } from 'react-router-dom';
 import { CardTypes } from './PlaceCard';

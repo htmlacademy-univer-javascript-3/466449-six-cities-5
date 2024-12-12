@@ -1,7 +1,7 @@
 import React from 'react';
 import { Offer } from '../../props/Offers';
 import { Layout } from '../../components/layout';
-import { PlaceGroup } from '../../components/PlaceGroup';
+import { PlaceGroup } from '../../components/Place/PlaceGroup';
 
 export type FavoritesScreenProps = {
   offers: Offer[];
@@ -23,7 +23,7 @@ export function FavoritesScreen({ offers }: FavoritesScreenProps): React.JSX.Ele
                       key={cityName}
                       cityName={cityName}
                       offers={offersInCity.filter(o => o.isFavorite)}
-                      cardType='FavoritesCard'
+                      cardType='favorites'
                     />
                   )).toArray()
                 };
