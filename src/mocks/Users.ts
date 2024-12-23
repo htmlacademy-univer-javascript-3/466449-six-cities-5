@@ -1,4 +1,4 @@
-﻿import { User } from "../props/User";
+﻿import { User } from '../props/User';
 
 export const Users: User[] = [
   {

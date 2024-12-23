@@ -19,18 +19,18 @@ export function MainScreen(): React.JSX.Element {
   return (
     <div className="page page--gray page--main">
       <Layout>
-        <main  className={cn('page__main', 'page__main--index', {
+        <main className={cn('page__main', 'page__main--index', {
           'page__main--index-empty': isEmpty,
         })}
         >
           <h1 className="visually-hidden">Cities</h1>
-          <Tabs 
+          <Tabs
             selectedCity={city}
-            onClick={(c) => dispatch(changeCityAction(c))} 
+            onClick={(c) => dispatch(changeCityAction(c))}
           />
           <div className="cities">
             {isLoading ? (
-            <div className={'cities__places-loading'} />
+              <div className={'cities__places-loading'} />
             ) : (
               <div
                 className={cn('cities__places-container', 'container', {

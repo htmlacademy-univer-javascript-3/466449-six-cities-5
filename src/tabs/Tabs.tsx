@@ -16,7 +16,7 @@ type TabsProps = {
   onClick: (city: string) => void;
 }
 
-export default function Tabs({ selectedCity, onClick }: TabsProps ) {
+export default function Tabs({ selectedCity, onClick }: TabsProps) {
   return (
     <div className="tabs">
       <section className="locations container">

@@ -1,5 +1,5 @@
-﻿﻿import leaflet from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+﻿﻿import 'leaflet/dist/leaflet.css';
+import leaflet from 'leaflet';
 import { Location } from '../../props/Offers';
 import { useEffect, useRef } from 'react';
 import { useMap } from './UseMap';

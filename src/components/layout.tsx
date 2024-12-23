@@ -1,4 +1,4 @@
-import { AppRoutes } from "../props/Constants";
+import { AppRoutes } from '../props/Constants';
 import { Link } from 'react-router-dom';
 
 interface LayoutProps {

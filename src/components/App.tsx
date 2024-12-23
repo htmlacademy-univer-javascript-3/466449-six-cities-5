@@ -44,6 +44,3 @@ export function App({offers, reviews, isAuthorized = false}: AppProps): React.JS
     </Provider>
   );
 }
-
-
-

@@ -2,26 +2,27 @@ import {Link} from 'react-router-dom';
 import { AppRoutes } from '../../props/Constants';
 import { Offer } from '../../props/Offers';
 import cn from 'classnames';
+import { Nullable } from 'vitest';
 
 export type CardTypes = 'cities' | 'favorites' | 'near-places';
 
 export type PlaceCardProps = {
   offer: Offer;
   cardType: CardTypes;
-  onChangeActiveCardId?: (id: string | null) => void;
+  onHover?: (id: Nullable<string>) => void;
 }
 
 export function PlaceCard({
   offer,
   cardType,
-  onChangeActiveCardId
+  onHover,
 }: PlaceCardProps): JSX.Element {
   const urlSingleOffer = AppRoutes.Offer.replace(':id', offer.id);
   return (
     <article
-    className={cn('place-card', `${cardType}__card`)}
-      onMouseOver={() => onChangeActiveCardId && onChangeActiveCardId(offer.id)}
-      onMouseLeave={() => onChangeActiveCardId && onChangeActiveCardId(null)}
+      className={cn('place-card', `${cardType}__card`)}
+      onMouseOver={() => onHover?.call(null, offer.id)}
+      onMouseLeave={() => onHover?.call(null, null)}
     >
       {offer.isPremium &&
         <div className="place-card__mark">

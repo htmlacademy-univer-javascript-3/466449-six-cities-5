@@ -1,4 +1,4 @@
-﻿import { Offer } from "./Offers";
+﻿import { Offer } from './Offers';
 
 export const sortingOrders = {
   Popular: () => 0,

@@ -14,7 +14,7 @@ type OfferListProps = {
 };
 
 export function OfferList({ offers, city }: OfferListProps) {
-  const [selectedId] = useState<Nullable<string>>();
+  const [selectedId, setSelectedId] = useState<Nullable<string>>();
   const order = useAppSelector((state) => state.sortingOrder);
   offers = offers.sort(sortingOrders[order]);
 
@@ -29,7 +29,7 @@ export function OfferList({ offers, city }: OfferListProps) {
         </b>
         {<SortingOrderList />}
         <div className="cities__places-list places__list tabs__content">
-          <PlaceList offers={offers} cardType='cities' />
+          <PlaceList offers={offers} cardType='cities' onItemHover={setSelectedId}/>
         </div>
       </section>
       <div className="cities__right-section">
