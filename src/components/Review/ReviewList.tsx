@@ -1,4 +1,4 @@
-﻿import { Review } from "../../props/Review";
+﻿import { Review } from '../../props/Review';
 import { ReviewItem } from './ReviewItem';
 
 export default function ReviewList({ reviews }: { reviews: Review[] }) {

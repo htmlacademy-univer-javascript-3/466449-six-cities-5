@@ -1,5 +1,4 @@
 ﻿import { PlaceCard } from './PlaceCard.tsx';
-import { useState } from 'react';
 import { Nullable } from 'vitest';
 import { Offer } from '../../props/Offers.ts';
 import { CardTypes } from './PlaceCard.tsx';
@@ -7,10 +6,10 @@ import { CardTypes } from './PlaceCard.tsx';
 type PlaceListProps = {
   offers: Offer[];
   cardType: CardTypes;
+  onItemHover?: (id: Nullable<string>) => void;
 }
 
-export function PlaceList({offers, cardType}: PlaceListProps): JSX.Element {
-  const [, setActiveCard] = useState<Nullable<string>>();
+export function PlaceList({offers, cardType, onItemHover}: PlaceListProps): JSX.Element {
 
   return (
     <>
@@ -18,7 +17,7 @@ export function PlaceList({offers, cardType}: PlaceListProps): JSX.Element {
         <PlaceCard
           offer={offer}
           cardType={cardType}
-          onChangeActiveCardId={(id) => setActiveCard(id)}
+          onHover={(id) => onItemHover?.call(null, id)}
         />
       ))}
     </>
