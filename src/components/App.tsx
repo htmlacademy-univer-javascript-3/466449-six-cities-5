@@ -6,20 +6,18 @@ import { FavoritesScreen } from '../pages/FavoritesScreen/FavoritesScreen.tsx';
 import { OfferScreen } from '../pages/OfferScreen/OfferScreen.tsx';
 import { NotFound } from '../components/NotFound.tsx';
 import { AppRoutes, AuthorizationStatus } from '../props/Constants.ts';
-import { Authorization } from './Autorisation.tsx';
 import { Offer } from '../props/Offers.ts';
-import { ReviewsMock } from '../mocks/reviews.ts';
 import { Provider } from 'react-redux';
 import { store } from '../store/Index.ts';
 import { Review } from '../props/Review.ts';
+import PrivateRoute from './routes/PrivateRoute.tsx';
 
 type AppProps = {
   offers: Offer[];
   reviews: Review[];
-  isAuthorized: boolean;
 }
 
-export function App({offers, reviews, isAuthorized = false}: AppProps): React.JSX.Element {
+export function App({offers, reviews}: AppProps): React.JSX.Element {
   return (
     <Provider store={store}>
       <BrowserRouter>
@@ -28,16 +26,29 @@ export function App({offers, reviews, isAuthorized = false}: AppProps): React.JS
             path={AppRoutes.MainScreen}
             element={<MainScreen/>}
           />
-          <Route path={AppRoutes.Login} element={<LoginScreen />} />
           <Route
-            path={AppRoutes.Favorites}
+            path={AppRoutes.Login}
+            element={<LoginScreen />}
+          />
+          <Route
+            element={<PrivateRoute />}
+          >
+            <Route
+              path={AppRoutes.Favorites}
+              element={<FavoritesScreen offers={offers} />}
+            />
+          </Route>
+          <Route
+            path={AppRoutes.Offer}
             element={
-              <Authorization isAuthorized={isAuthorized}>
-                <FavoritesScreen offers={offers} />
-              </Authorization>
+              <OfferScreen
+                reviews={reviews}
+                offer={offers[0]}
+                nearbyOffers={offers}
+                authStatus={AuthorizationStatus.Auth}
+              />
             }
           />
-          <Route path={AppRoutes.Offer} element={<OfferScreen reviews={ReviewsMock} offer={offers[0]} nearbyOffers={offers} authStatus={AuthorizationStatus.Auth}/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
