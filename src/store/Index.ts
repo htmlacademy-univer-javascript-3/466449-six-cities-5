@@ -1,11 +1,19 @@
-﻿﻿import { configureStore } from '@reduxjs/toolkit';
-import { reducer } from './Reducer';
+import { configureStore } from '@reduxjs/toolkit';
 import { createAPI } from '../services/Api';
+import cityReducer from './slices/CitySlice';
+import offersReducer from './slices/OffersSlice';
+import authReducer from './slices/AuthSlice';
+import currentOfferReducer from './slices/CurrentOfferSlice';
 
 export const api = createAPI();
 
 export const store = configureStore({
-  reducer: reducer,
+  reducer: {
+    city: cityReducer,
+    offers: offersReducer,
+    auth: authReducer,
+    currentOffer: currentOfferReducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       thunk: {

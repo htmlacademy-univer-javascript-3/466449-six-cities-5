@@ -1,18 +1,17 @@
 import React from 'react';
 import { Layout } from '../../components/layout.tsx';
-import Tabs from '../../tabs/Tabs.tsx';
+import Tabs from '../../components/Tabs/Tabs.tsx';
 import { useAppDispatch, useAppSelector } from '../../store/Hooks';
 import cn from 'classnames';
-import { changeCityAction } from '../../store/Action';
 import { OfferList, EmptyOfferList } from './OffersList';
+import { cityOffersSelector } from '../../store/Selectors.ts';
+import { changeCity } from '../../store/slices/CitySlice';
 
 
 export function MainScreen(): React.JSX.Element {
-  const city = useAppSelector((state) => state.city);
-  const offers = useAppSelector((state) =>
-    state.offers.filter((o) => o.city.name === city)
-  );
-  const isLoading = useAppSelector((state) => state.offersLoadingStatus);
+  const city = useAppSelector((state) => state.city.city);
+  const offers = useAppSelector(cityOffersSelector);
+  const isLoading = useAppSelector((state) => state.offers.offersLoadingStatus);
   const dispatch = useAppDispatch();
   const isEmpty = offers.length === 0;
 
@@ -26,7 +25,7 @@ export function MainScreen(): React.JSX.Element {
           <h1 className="visually-hidden">Cities</h1>
           <Tabs
             selectedCity={city}
-            onClick={(c) => dispatch(changeCityAction(c))}
+            onClick={(c) => dispatch(changeCity(c))}
           />
           <div className="cities">
             {isLoading ? (

@@ -1,5 +1,5 @@
 ﻿import { Link } from 'react-router-dom';
-import { AppRoutes } from '../props/Constants';
+import { AppRoutes } from '../../props/Constants';
 import cn from 'classnames';
 
 const cities = [

@@ -1,15 +1,15 @@
 import ReactDOM from 'react-dom/client';
 import { App } from './components/App.tsx';
-import { offerMocks } from './mocks/offers.ts';
-import { ReviewsMock } from './mocks/reviews.ts';
 import { store } from './store/Index';
-import { fetchOrdersAction, checkAuthAction } from './store/ApiActions';
+import { fetchOrdersAction, checkAuthAction, fetchFavoritesAction } from './store/ApiActions';
 
 store.dispatch(fetchOrdersAction());
-store.dispatch(checkAuthAction());
+await store.dispatch(checkAuthAction());
+await store.dispatch(fetchFavoritesAction());
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-root.render(<App offers={offerMocks} reviews={ReviewsMock} />);
+root.render(<App />);

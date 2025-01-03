@@ -1,6 +1,7 @@
 import { AppRoutes, AuthorizationStatus } from '../props/Constants';
-import { Link } from 'react-router-dom';
-import { useAppSelector } from '../store/Hooks';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '../store/Hooks';
+import { logoutAction } from '../store/ApiActions';
 
 interface LayoutProps {
   children: React.JSX.Element;
@@ -12,8 +13,19 @@ export function Layout({
   showFooter,
 }: LayoutProps): React.JSX.Element {
 
-  const authStatus = useAppSelector((state) => state.authorizationStatus);
-  const user = useAppSelector((state) => state.user);
+  const authStatus = useAppSelector((state) => state.auth.authorizationStatus);
+  const user = useAppSelector((state) => state.auth.user);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const favoriteCount = useAppSelector(
+    (state) => state.offers.favorites.length
+  );
+
+  const logOut = () => {
+    dispatch(logoutAction());
+    navigate(AppRoutes.MainScreen);
+  };
 
   return (
     <>
@@ -44,11 +56,15 @@ export function Layout({
                         <span className="header__user-name user__name">
                           {user.email}
                         </span>
-                        <span className="header__favorite-count">3</span>
+                        <span className="header__favorite-count">{favoriteCount}</span>
                       </Link>
                     </li>
                     <li className="header__nav-item">
-                      <Link className="header__nav-link" to={'#'}>
+                      <Link
+                        className="header__nav-link"
+                        to={AppRoutes.MainScreen}
+                        onClick={logOut}
+                      >
                         <span className="header__signout">Sign out</span>
                       </Link>
                     </li>
@@ -63,7 +79,7 @@ export function Layout({
                       <span className="header__login">Sign in</span>
                     </Link>
                   </li>
-                )}               
+                )}
               </ul>
             </nav>
           </div>

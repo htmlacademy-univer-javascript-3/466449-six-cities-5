@@ -1,10 +1,10 @@
-﻿export type UserData = {
+export type UserData = {
   name: string;
   avatarUrl: string;
   isPro: boolean;
 };
 
-﻿export type UserCreds = {
+export type UserCreds = {
   email: string;
   token: string;
 };

@@ -1,15 +1,56 @@
-﻿import { useState } from 'react';
+﻿import { useState, createRef, FormEvent } from 'react';
+import { sendReview } from '../../store/ApiActions';
+import { useAppDispatch, useAppSelector } from '../../store/Hooks';
 
 export function ReviewForm() {
-  const [formData, setFormData] = useState({ rating: 0, review: '' });
+  const [formData, setFormData] = useState({
+    rating: 0,
+    review: '',
+    disabled: false,
+  });
 
-  const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const {name, value} = e.currentTarget;
-    setFormData({...formData, [name]: value});
+  const offerId = useAppSelector((state) => state.currentOffer.offer?.id);
+  const dispatch = useAppDispatch();
+  const formRef = createRef<HTMLFormElement>();
+
+  const handleRatingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value} = e.target;
+    setFormData({...formData, rating: Number(value)});
   };
 
+  const handleReviewChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const { value } = e.target;
+    setFormData({ ...formData, review: value });
+  };
+
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (offerId === undefined) {
+      return;
+    }
+    setFormData({ ...formData, disabled: true });
+    dispatch(
+      sendReview({
+        offerId,
+        formData: { comment: formData.review, rating: formData.rating },
+      })
+    )
+      .unwrap()
+      .then(() => {
+        setFormData({ ...formData, rating: 0, review: '' });
+        formRef.current?.reset();
+      })
+      .catch(() => {})
+      .finally(() => setFormData({ ...formData, disabled: false }));
+  };
+
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form
+      className="reviews__form form"
+      onSubmit={onSubmit}
+      ref={formRef}
+    >
       <label className="reviews__label form__label" htmlFor="review">
         Your review
       </label>
@@ -106,7 +147,7 @@ export function ReviewForm() {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         value={formData.review}
-        onChange={handleRatingChange}
+        onChange={handleReviewChange}
       />
       <div className="reviews__button-wrapper">
         <p className="reviews__help">
@@ -117,7 +158,12 @@ export function ReviewForm() {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled
+          disabled={
+            formData.disabled ||
+            formData.review.length > 300 ||
+            formData.review.length < 50 ||
+            formData.rating === 0
+          }
         >
           Submit
         </button>
