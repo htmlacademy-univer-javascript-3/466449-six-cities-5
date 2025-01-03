@@ -1,4 +1,4 @@
-﻿﻿import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, State } from '../props/State';
 
 export const useAppSelector = <T>(callback: (state: State) => T) =>

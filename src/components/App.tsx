@@ -4,25 +4,19 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { LoginScreen } from '../pages/LoginScreen/LoginScreen.tsx';
 import { FavoritesScreen } from '../pages/FavoritesScreen/FavoritesScreen.tsx';
 import { OfferScreen } from '../pages/OfferScreen/OfferScreen.tsx';
-import { NotFound } from '../components/NotFound.tsx';
-import { AppRoutes, AuthorizationStatus } from '../props/Constants.ts';
-import { Offer } from '../props/Offers.ts';
+import { AppRoutes } from '../props/Constants.ts';
 import { Provider } from 'react-redux';
 import { store } from '../store/Index.ts';
-import { Review } from '../props/Review.ts';
 import PrivateRoute from './routes/PrivateRoute.tsx';
+import { NotFoundScreen } from '../pages/NotFound/NotFoundScreen.tsx';
 
-type AppProps = {
-  offers: Offer[];
-  reviews: Review[];
-}
-
-export function App({offers, reviews}: AppProps): React.JSX.Element {
+export function App(): React.JSX.Element {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
           <Route
+            index
             path={AppRoutes.MainScreen}
             element={<MainScreen/>}
           />
@@ -35,21 +29,14 @@ export function App({offers, reviews}: AppProps): React.JSX.Element {
           >
             <Route
               path={AppRoutes.Favorites}
-              element={<FavoritesScreen offers={offers} />}
+              element={<FavoritesScreen />}
             />
           </Route>
           <Route
             path={AppRoutes.Offer}
-            element={
-              <OfferScreen
-                reviews={reviews}
-                offer={offers[0]}
-                nearbyOffers={offers}
-                authStatus={AuthorizationStatus.Auth}
-              />
-            }
+            element={<OfferScreen />}
           />
-          <Route path="*" element={<NotFound />} />
+          <Route path={AppRoutes.NotFound} element={<NotFoundScreen />} />
         </Routes>
       </BrowserRouter>
     </Provider>

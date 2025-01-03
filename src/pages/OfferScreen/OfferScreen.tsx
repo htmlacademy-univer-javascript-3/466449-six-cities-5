@@ -1,25 +1,43 @@
-import React from 'react';
 import { Layout } from '../../components/layout';
-import { Offer } from '../../props/Offers';
-import type { Review } from '../../props/Review';
 import { ReviewForm } from '../../components/Review/ReviewForm';
 import ReviewList from '../../components/Review/ReviewList';
-import { AuthorizationStatus, DEFAULT_MAP_ZOOM } from '../../props/Constants';
+import { AuthorizationStatus, DEFAULT_MAP_ZOOM, AppRoutes } from '../../props/Constants';
 import { Map } from '../../components/Map/Map';
 import { OfferBookmarkButton } from '../../components/BookmarkButton';
 import { OfferUserAvatar } from '../../components/UserAvatar';
 import { OfferGoods } from './OfferGoods';
 import { PlaceList } from '../../components/Place/PlaceList';
+import { useAppSelector, useAppDispatch } from '../../store/Hooks';
+import { useOfferScreen } from './UseOfferScreen';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { clearOffer } from '../../store/slices/CurrentOfferSlice';
+import { Spinner } from '../../components/Spinner/Spinner';
 
 
-type OfferScreenProps = {
-  reviews: Review[];
-  offer: Offer;
-  nearbyOffers: Offer[];
-  authStatus: AuthorizationStatus;
-}
+export function OfferScreen(): React.JSX.Element {
+  const authStatus = useAppSelector((state) => state.auth.authorizationStatus);
+  const { offer, reviews, nearbyOffers, error, isLoading } = useOfferScreen();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-export function OfferScreen({ reviews, offer, nearbyOffers, authStatus }: OfferScreenProps): React.JSX.Element {
+  useEffect(() => {
+    if (error !== undefined || (!isLoading && offer === undefined)) {
+      navigate(AppRoutes.NotFound);
+    }
+  }, [error, navigate, offer, isLoading]);
+
+  useEffect(
+    () => () => {
+      dispatch(clearOffer());
+    },
+    [dispatch]
+  );
+
+  if (isLoading || offer === undefined) {
+    return <Spinner />;
+  }
+
   const offerLocation = { name: offer.id, location: offer.location };
   const displayedOffers = nearbyOffers
     .filter((o) => o.id !== offer.id)
@@ -27,6 +45,7 @@ export function OfferScreen({ reviews, offer, nearbyOffers, authStatus }: OfferS
   const nearbyPoints = displayedOffers
     .map((o) => ({ name: o.id, location: o.location }))
     .concat(offerLocation);
+
   return (
     <div className="page">
       <Layout>
@@ -50,7 +69,7 @@ export function OfferScreen({ reviews, offer, nearbyOffers, authStatus }: OfferS
                 )}
                 <div className="offer__name-wrapper">
                   <h1 className="offer__name">{offer.title}</h1>
-                  <OfferBookmarkButton isFavorite={offer.isFavorite} />
+                  <OfferBookmarkButton isFavorite={offer.isFavorite} offerId={offer.id} />
                 </div>
                 <div className="offer__rating rating">
                   <div className="offer__stars rating__stars">

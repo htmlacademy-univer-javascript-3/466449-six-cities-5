@@ -1,4 +1,4 @@
-﻿﻿import { store } from '../store/Index';
+import { store } from '../store/Index';
 
 export type State = ReturnType<typeof store.getState>;
 

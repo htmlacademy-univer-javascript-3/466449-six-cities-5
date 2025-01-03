@@ -1,13 +1,8 @@
 import React from 'react';
-import { Offer } from '../../props/Offers';
 import { Layout } from '../../components/layout';
 import { PlaceGroup } from '../../components/Place/PlaceGroup';
 
-export type FavoritesScreenProps = {
-  offers: Offer[];
-}
-
-export function FavoritesScreen({ offers }: FavoritesScreenProps): React.JSX.Element {
+export function FavoritesScreen(): React.JSX.Element {
   return (
     <div className="page">
       <Layout showFooter>

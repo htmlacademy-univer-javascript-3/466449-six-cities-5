@@ -1,8 +1,8 @@
 import {Link} from 'react-router-dom';
-import { AppRoutes } from '../../props/Constants';
 import { Offer } from '../../props/Offers';
 import cn from 'classnames';
 import { Nullable } from 'vitest';
+import { CardBookmarkButton } from '../BookmarkButton';
 
 export type CardTypes = 'cities' | 'favorites' | 'near-places';
 
@@ -17,7 +17,6 @@ export function PlaceCard({
   cardType,
   onHover,
 }: PlaceCardProps): JSX.Element {
-  const urlSingleOffer = AppRoutes.Offer.replace(':id', offer.id);
   return (
     <article
       className={cn('place-card', `${cardType}__card`)}
@@ -29,7 +28,7 @@ export function PlaceCard({
           <span>Premium</span>
         </div>}
       <div className={cn('place-card__image-wrapper', `${cardType}__image-wrapper`)}>
-        <Link to={urlSingleOffer}>
+        <Link to={`/offer/${offer.id}`}>
           <img
             className="place-card__image"
             src={offer.previewImage}
@@ -45,12 +44,7 @@ export function PlaceCard({
             <b className="place-card__price-value">€{offer.price}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button ${offer.isFavorite && 'place-card__bookmark-button--active'} button`} type="button">
-            <svg className="place-card__bookmark-icon" width={18} height={19}>
-              <use xlinkHref="#icon-bookmark"/>
-            </svg>
-            <span className="visually-hidden">{offer.isFavorite ? 'In bookmarks' : 'To bookmarks'}</span>
-          </button>
+          <CardBookmarkButton offerId={offer.id} isFavorite={offer.isFavorite} />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
@@ -59,7 +53,7 @@ export function PlaceCard({
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={urlSingleOffer}>{offer.city.name}</Link>
+          <Link to={`/offer/${offer.id}`}>{offer.city.name}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
